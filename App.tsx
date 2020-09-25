@@ -2,7 +2,10 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { AppLoading } from "expo";
 import { useFonts } from "expo-font";
-import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet, View } from "react-native";
+//
+import Routes from "./routes";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -14,12 +17,10 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <View style={styles.container}>
+      <NavigationContainer>
         <StatusBar style="light" />
-        <Text style={{ fontFamily: "Kumbh-bold" }}>
-          Open up App.tsx to start working on your app!
-        </Text>
-      </View>
+        <Routes />
+      </NavigationContainer>
     );
   }
 }
