@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { AppLoading } from "expo";
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 //
 import Routes from "./routes";
 
@@ -17,19 +17,12 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <NavigationContainer>
-        <StatusBar style="light" />
-        <Routes />
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <StatusBar style="light" />
+          <Routes />
+        </NavigationContainer>
+      </SafeAreaProvider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#025aa2",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
