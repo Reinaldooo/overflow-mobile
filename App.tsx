@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { AppLoading } from "expo";
+// import { AppLoading } from "expo";
+import { Text } from "react-native";
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -14,7 +15,7 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <Text>Insert Apploading</Text>;
   } else {
     return (
       <SafeAreaProvider>

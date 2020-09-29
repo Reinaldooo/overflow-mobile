@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 
 export const Container = styled(RectButton)`
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: #71aeda;
   border-radius: 10px;
   margin-top: 8px;

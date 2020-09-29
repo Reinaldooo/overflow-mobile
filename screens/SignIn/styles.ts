@@ -17,3 +17,31 @@ export const Title = styled.Text`
   font-size: 20px;
   color: #fff;
 `;
+
+export const ForgotPassword = styled.TouchableOpacity`
+  margin-top: 20px;
+`;
+
+export const ForgotPasswordText = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-family: "Kumbh-bold";
+`;
+
+export const CreateAccount = styled.TouchableOpacity`
+  width: 100%;
+  padding: 15px 0;
+  border-top-color: #076abb;
+  border-top-width: 1px;
+  margin-top: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CreateAccountText = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-family: "Kumbh-bold";
+  margin-left: 10px;
+`;

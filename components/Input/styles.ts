@@ -3,7 +3,7 @@ import { Feather } from "@expo/vector-icons";
 
 export const Container = styled.View`
   width: 100%;
-  height: 60px;
+  height: 50px;
   padding: 0 16px;
   background-color: #fff;
   border-radius: 10px;
@@ -13,7 +13,7 @@ export const Container = styled.View`
 `;
 
 export const Icon = styled(Feather)`
-  margin-right: 16px;
+  margin-right: 10px;
 `;
 
 export const TextInput = styled.TextInput`
