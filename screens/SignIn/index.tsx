@@ -1,6 +1,7 @@
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { KeyboardAvoidingView, View, Platform } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 //
 import signInBack from "../../assets/signInBack.png";
 import Button from "../../components/Button";
@@ -8,6 +9,7 @@ import Input from "../../components/Input";
 import * as S from "./styles";
 
 const SignIn: React.FC = () => {
+  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -30,7 +32,7 @@ const SignIn: React.FC = () => {
           <S.ForgotPasswordText>Esqueci a senha</S.ForgotPasswordText>
         </S.ForgotPassword>
 
-        <S.CreateAccount>
+        <S.CreateAccount onPress={() => navigation.navigate("SignUp")}>
           <Feather name="log-in" size={20} color="#fff" />
           <S.CreateAccountText>Criar conta</S.CreateAccountText>
         </S.CreateAccount>
