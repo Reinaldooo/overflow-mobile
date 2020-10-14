@@ -3,6 +3,7 @@ import React, {
   useEffect,
   useImperativeHandle,
   forwardRef,
+  useState,
 } from "react";
 import { TextInputProps } from "react-native";
 import { useField } from "@unform/core";
@@ -44,6 +45,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
   const { registerField, defaultValue, fieldName, error } = useField(name);
   const inputElRef = useRef<any>(null);
   const inputValueRef = useRef<InputValueRef>({ value: defaultValue });
+  const [isFocused, setFocused] = useState(false);
 
   useEffect(() => {
     registerField({
@@ -59,13 +61,23 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
     },
   }));
 
+  const handleFocus = () => {
+    setFocused(true);
+  };
+
+  const handleBlur = () => {
+    setFocused(false);
+  };
+
   return (
     <S.Container>
-      <S.Icon name={icon} size={20} color="#999" />
+      <S.Icon name={icon} size={20} color={isFocused ? "#025aa2" : "#999"} />
 
       <S.TextInput
         ref={inputElRef}
         placeholderTextColor="#999"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         defaultValue={defaultValue}
         onChangeText={(value) => {
           inputValueRef.current.value = value;
