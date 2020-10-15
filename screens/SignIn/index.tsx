@@ -6,23 +6,57 @@ import {
   Platform,
   TextInput,
   ScrollView,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Form } from "@unform/mobile";
 import { FormHandles } from "@unform/core";
+import * as Yup from "yup";
 //
 import signInBack from "../../assets/signInBack.png";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as S from "./styles";
+import getValidationErrors from "../../utils/getValidationErrors";
+
+interface SignInForm {
+  email: string;
+  passwd: string;
+}
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
-  const handleSignIn = (data: object) => {
-    console.log(data);
+  const handleSignIn = async (data: SignInForm): Promise<void> => {
+    // Unform will automatically prevent default.
+    try {
+      // Start with a clean state
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required("Email obrigatório.")
+          .email("Email inválido."),
+        passwd: Yup.string().required("Senha obrigatória"),
+      });
+      await schema.validate(data, { abortEarly: false });
+
+      // await signIn({
+      //   email: data.email,
+      //   passwd: data.passwd,
+      // });
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        // This is the way to set error with unform. Each key is the input name and
+        // it will be set on the error var coming from the useField hook in the Comp
+        formRef.current?.setErrors(errors);
+        return;
+      }
+      Alert.alert("Ops, algo deu errado!", "Por favor tente novamente.");
+    }
   };
 
   const submitForm = () => {

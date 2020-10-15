@@ -1,7 +1,11 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
 
-export const Container = styled.View`
+interface ContainerProps {
+  isErrored: boolean;
+}
+
+export const Container = styled.View<ContainerProps>`
   width: 100%;
   height: 50px;
   padding: 0 16px;
@@ -10,6 +14,13 @@ export const Container = styled.View`
   margin-bottom: 8px;
   flex-direction: row;
   align-items: center;
+
+  ${(props) =>
+    props.isErrored &&
+    css`
+      border-color: #e6505c;
+      border-width: 2px;
+    `}
 `;
 
 export const Icon = styled(Feather)`

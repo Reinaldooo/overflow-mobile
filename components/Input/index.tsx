@@ -70,7 +70,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
   };
 
   return (
-    <S.Container>
+    <S.Container isErrored={!!error}>
       <S.Icon name={icon} size={20} color={isFocused ? "#025aa2" : "#999"} />
 
       <S.TextInput
