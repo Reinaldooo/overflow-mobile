@@ -1,11 +1,12 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-// import { AppLoading } from "expo";
-import { Text } from "react-native";
+import { AppLoading } from "expo";
+import { Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 //
+import AppProvider from "./context";
 import Routes from "./routes";
 
 export default function App() {
@@ -15,13 +16,15 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <Text>Insert Apploading</Text>;
+    return <AppLoading />;
   } else {
     return (
       <SafeAreaProvider>
         <NavigationContainer>
           <StatusBar style="light" />
-          <Routes />
+          <AppProvider>
+            <Routes />
+          </AppProvider>
         </NavigationContainer>
       </SafeAreaProvider>
     );

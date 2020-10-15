@@ -18,6 +18,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as S from "./styles";
 import getValidationErrors from "../../utils/getValidationErrors";
+import { useAuth } from "../../context/authContext";
 
 interface SignInForm {
   email: string;
@@ -28,6 +29,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
+  const { signIn } = useAuth();
 
   const handleSignIn = async (data: SignInForm): Promise<void> => {
     // Unform will automatically prevent default.
@@ -43,10 +45,10 @@ const SignIn: React.FC = () => {
       });
       await schema.validate(data, { abortEarly: false });
 
-      // await signIn({
-      //   email: data.email,
-      //   passwd: data.passwd,
-      // });
+      await signIn({
+        email: data.email,
+        passwd: data.passwd,
+      });
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
@@ -55,6 +57,7 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors(errors);
         return;
       }
+      console.log(err);
       Alert.alert("Ops, algo deu errado!", "Por favor tente novamente.");
     }
   };
@@ -85,7 +88,7 @@ const SignIn: React.FC = () => {
 
           <Form ref={formRef} onSubmit={handleSignIn} style={{ width: "100%" }}>
             <Input
-              autoCapitalize="words"
+              autoCapitalize="none"
               autoCorrect={false}
               keyboardType="email-address"
               returnKeyType="next"
