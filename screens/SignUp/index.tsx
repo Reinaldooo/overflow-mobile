@@ -18,6 +18,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as S from "./styles";
 import getValidationErrors from "../../utils/getValidationErrors";
+import api from "../../services/api";
 
 interface SignUpFormData {
   name: string;
@@ -44,7 +45,14 @@ const SignUp: React.FC = () => {
       });
       await schema.validate(data, { abortEarly: false });
 
-      // await api.post("users", data);
+      await api.post("/users", data);
+
+      Alert.alert(
+        "Cadastro realizado com sucesso!",
+        "Agora você já pode fazer o login."
+      );
+
+      navigation.goBack();
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
