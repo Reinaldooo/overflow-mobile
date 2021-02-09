@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export const Container = styled(SafeAreaView)`
   flex: 1;
   padding: 0 20px;
-  background-color: #025aa2;
+  background-color: #2d2f31;
   align-items: center;
   justify-content: center;
 `;
@@ -31,7 +31,7 @@ export const ForgotPasswordText = styled.Text`
 export const CreateAccount = styled.TouchableOpacity`
   width: 100%;
   padding: 15px 0;
-  border-top-color: #076abb;
+  border-top-color: #3e3f41;
   border-top-width: 1px;
   margin-top: 50px;
   flex-direction: row;

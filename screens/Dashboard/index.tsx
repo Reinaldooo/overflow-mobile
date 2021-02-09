@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
         flex: 1,
         justifyContent: "center",
         paddingHorizontal: 20,
-        backgroundColor: "#025aa2",
+        backgroundColor: "#3e3f41",
       }}
     >
       <Button onPress={signOut}>Sair</Button>
